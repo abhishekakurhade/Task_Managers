@@ -3,7 +3,7 @@ frontend/node_modules
 backend/node_modules
 .env
 .DS_Store
-build
+
 dist
 
 # Node.js
@@ -15,12 +15,7 @@ pnpm-debug.log*
 package-lock.json
 yarn.lock
 
-# Build outputs
-build/
-dist/
-.out/
-.next/
-*.log
+
 
 # Environment variables
 .env
