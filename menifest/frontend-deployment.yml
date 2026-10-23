@@ -19,7 +19,7 @@ spec:
         - name: tm-frontend-container
           image: task-manager-frontend:__IMAGE_TAG__
           ports:
-           - containerPort: 80
+           - containerPort: 3000
 
 ---
 
@@ -34,6 +34,6 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 3000
       nodePort: 30002
 
