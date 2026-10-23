@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tm-frontend-deploy
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tm-frontend
+  
+  template:
+    metadata:
+      name: tm-frontend-pod
+      labels: 
+        app: tm-frontend
+    spec:
+      containers:
+        - name: tm-frontend-container
+          image: task-manager-frontend:__IMAGE_TAG__
+          ports:
+           - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: tm-frontend-service
+spec:
+  selector:
+    app: tm-frontend
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30002
+
