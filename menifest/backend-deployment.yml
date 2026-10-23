@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tm-backend-deploy
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tm-backend
+  
+  template:
+    metadata:
+      name: tm-backend-pod
+      labels: 
+        app: tm-backend
+    spec:
+      containers:
+        - name: tm-backend-container
+          image: task-manager-backend:__IMAGE_TAG__
+          ports:
+           - containerPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tm-backend-service
+spec:
+  selector:
+    app: tm-backend
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      
+
